@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import UpdateProfilePictureView, UserProfileView, UserSettingsView
+from views import UpdateProfilePictureView, UserProfileView, UserSettingsView
 
 urlpatterns = [
     path("profile/", UserProfileView.as_view(), name="user-profile"),
@@ -10,6 +10,8 @@ urlpatterns = [
         name="upload-avatar",
     ),
     path(
-        "profile/settings/", UserSettingsView.as_view(), name="user-settings"
+        "profile/settings/",
+        UserSettingsView.as_view(),
+        name="user-settings",
     ),
 ]

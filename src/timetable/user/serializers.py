@@ -1,6 +1,8 @@
+from models import CustomUser
+
 from rest_framework import serializers
 
-from .models import CustomUser
+__all__ = ["UserProfileSerializer", "UserSettingsSerializer"]
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -19,5 +21,6 @@ class UserSettingsSerializer(serializers.ModelSerializer):
         password = validated_data.get("password", None)
         if password:
             instance.set_password(password)
+
         instance.save()
         return instance

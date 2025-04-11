@@ -5,7 +5,9 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import UserProfileSerializer, UserSettingsSerializer
+from serializers import UserProfileSerializer, UserSettingsSerializer
+
+__all__ = ["UserProfileView", "UpdateProfilePictureView", "UserSettingsView"]
 
 
 class UserProfileView(APIView):
@@ -29,13 +31,15 @@ class UpdateProfilePictureView(APIView):
                 user.avatar = avatar_url
                 user.save()
                 return Response(
-                    {"avatar": user.avatar}, status=status.HTTP_200_OK
+                    {"avatar": user.avatar},
+                    status=status.HTTP_200_OK,
                 )
             except ValidationError:
                 return Response(
                     {"error": "Invalid URL"},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
+
         return Response(
             {"error": "No avatar URL provided"},
             status=status.HTTP_400_BAD_REQUEST,
@@ -47,9 +51,12 @@ class UserSettingsView(APIView):
 
     def put(self, request):
         serializer = UserSettingsSerializer(
-            request.user, data=request.data, partial=True
+            request.user,
+            data=request.data,
+            partial=True,
         )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
