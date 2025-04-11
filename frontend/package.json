@@ -18,9 +18,12 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
     "build": "vite build",
-    "test": "react-scripts test"
+    "lint": "eslint .",
+    "format": "prettier --check ./**/*.{js,ts,jsx,tsx}",
+    "format:fix": "prettier --write ./**/*.{js,ts,jsx,tsx}",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.25.9",
