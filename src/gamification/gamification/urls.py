@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.urls import include, path
 
+from gamification.views import health
+
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
 
-from gamification.views import health
 
 urlpatterns = [
     path("health/", health),

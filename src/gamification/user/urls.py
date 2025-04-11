@@ -1,6 +1,10 @@
-from django.urls import path
+from user.views import (
+    UpdateProfilePictureView,
+    UserProfileView,
+    UserSettingsView,
+)
 
-from user.views import UpdateProfilePictureView, UserProfileView, UserSettingsView
+from django.urls import path
 
 urlpatterns = [
     path("profile/", UserProfileView.as_view(), name="user-profile"),

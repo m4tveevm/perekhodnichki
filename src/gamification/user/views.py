@@ -1,3 +1,5 @@
+from user.serializers import UserProfileSerializer, UserSettingsSerializer
+
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 
@@ -5,7 +7,6 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from user.serializers import UserProfileSerializer, UserSettingsSerializer
 
 __all__ = ["UserProfileView", "UpdateProfilePictureView", "UserSettingsView"]
 
