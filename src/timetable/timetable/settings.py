@@ -1,4 +1,3 @@
-import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -11,7 +10,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("DJANGO_SECRET", default="fallback_secret_key")
 
 DEBUG = config(
-    "DEBUG", default="False", cast=lambda v: bool(strtobool(v or "False"))
+    "DEBUG",
+    default="False",
+    cast=lambda v: bool(
+        strtobool(v or "False"),
+    ),
 )
 
 ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS", default="*", cast=Csv())
@@ -27,13 +30,6 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "corsheaders",
     #
-    "brigade_assignment.apps.BrigadeAssignmentConfig",
-    "educational_plan.apps.EducationalPlanConfig",
-    "group_educational_plan.apps.GroupEducationalPlanConfig",
-    "groups.apps.GroupsConfig",
-    "subject.apps.SubjectConfig",
-    "teacher.apps.TeacherConfig",
-    "teacher_profile.apps.TeacherProfileConfig",
     "user.apps.UserConfig",
 ]
 MIDDLEWARE = [
@@ -52,7 +48,7 @@ ROOT_URLCONF = "timetable.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -75,7 +71,7 @@ DATABASES = {
         "PASSWORD": config("POSTGRES_PASSWORD", default="postgres"),
         "HOST": config("DJANGO_DB_HOST", default="db"),
         "PORT": config("POSTGRES_PORT", default="5432"),
-    }
+    },
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -106,13 +102,10 @@ REST_FRAMEWORK = {
     ),
 }
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru-ru"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
-
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -127,7 +120,9 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = config(
-    "CSRF_TRUSTED_ORIGINS", default="http://localhost:3000", cast=Csv()
+    "CSRF_TRUSTED_ORIGINS",
+    default="http://localhost:3000",
+    cast=Csv(),
 )
 
 SIMPLE_JWT = {

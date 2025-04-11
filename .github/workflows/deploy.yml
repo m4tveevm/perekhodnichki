@@ -25,7 +25,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install -r src/requirements/test.txt
+          pip install -r src/requirements/dev.txt
+
 
       - name: Run Black
         run: black --check ./src
@@ -95,7 +96,7 @@ jobs:
           username: ${{ secrets.VDS_USER }}
           key: ${{ secrets.VDS_SSH_KEY }}
           source: "./stack.yml"
-          target: "/home/${{ secrets.VDS_USER }}"
+          target: "/home/${{ secrets.VDS_USER }}/perekhodnichki"
           overwrite: true
           strip_components: 0
 
