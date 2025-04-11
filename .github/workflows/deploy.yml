@@ -27,6 +27,7 @@ jobs:
           pip install --upgrade pip
           pip install -r src/requirements/dev.txt
 
+
       - name: Run Black
         run: black --check ./src
 
