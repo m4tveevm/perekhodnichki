@@ -1,5 +1,5 @@
 services:
-  backend:
+  backend_perekhodnichki:
     image: ghcr.io/m4tveevm/perekhodnichki-backend:latest
     environment:
       - DJANGO_DB_HOST=perekhodnichki_db
@@ -25,10 +25,10 @@ services:
       - django_secret
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`spbetu.ru`) && PathPrefix(`/api`)"
-      - "traefik.http.routers.backend.entrypoints=websecure"
-      - "traefik.http.routers.backend.tls=true"
-      - "traefik.http.services.backend.loadbalancer.server.port=8010"
+      - "traefik.http.routers.backend_perekhodnichki.rule=Host(`spbetu.ru`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend_perekhodnichki.entrypoints=websecure"
+      - "traefik.http.routers.backend_perekhodnichki.tls=true"
+      - "traefik.http.services.backend_perekhodnichki.loadbalancer.server.port=8010"
     deploy:
       replicas: 2
       restart_policy:
@@ -36,7 +36,7 @@ services:
       update_config:
         order: start-first
 
-  frontend:
+  frontend_perekhodnichki:
     image: ghcr.io/m4tveevm/perekhodnichki-frontend:latest
     environment:
       - REACT_APP_API_URL=https://spbetu.ru/api/
@@ -45,16 +45,16 @@ services:
       - traefik-public
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`spbetu.ru`)"
-      - "traefik.http.routers.frontend.entrypoints=websecure"
-      - "traefik.http.routers.frontend.tls=true"
-      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+      - "traefik.http.routers.frontend_perekhodnichki.rule=Host(`spbetu.ru`)"
+      - "traefik.http.routers.frontend_perekhodnichki.entrypoints=websecure"
+      - "traefik.http.routers.frontend_perekhodnichki.tls=true"
+      - "traefik.http.services.frontend_perekhodnichki.loadbalancer.server.port=80"
     deploy:
       replicas: 2
       restart_policy:
         condition: on-failure
 
-  pg15:
+  pg15_perekhodnichki:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data
