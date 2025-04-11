@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install -r src/requirements/testng.txt
+          pip install -r src/requirements/dev.txt
 
       - name: Run Black
         run: black --check ./src
