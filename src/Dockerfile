@@ -17,6 +17,6 @@ ENV PYTHONUNBUFFERED=1
 COPY docker-entrypoint.sh /app/docker-entrypoint.sh
 RUN chmod +x /app/docker-entrypoint.sh
 
-WORKDIR /app/timetable
+WORKDIR /app/gamification
 
-CMD ["gunicorn", "timetable.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "gamification.wsgi:application", "--bind", "0.0.0.0:8000"]
