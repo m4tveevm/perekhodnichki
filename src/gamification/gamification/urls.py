@@ -6,7 +6,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from views import health
+from gamification.views import health
 
 urlpatterns = [
     path("health/", health),
