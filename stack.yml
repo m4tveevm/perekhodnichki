@@ -40,7 +40,7 @@ services:
   frontend_perekhodnichki:
     image: ghcr.io/m4tveevm/perekhodnichki-frontend:latest
     environment:
-      - REACT_APP_API_URL=https://spbetu.ru/api
+      - REACT_APP_API_URL=https://spbetu.ru/api/
     networks:
       - traefik-public
       - perekhodnichki_net
