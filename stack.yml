@@ -5,7 +5,7 @@ services:
       - DJANGO_DB_HOST=perekhodnichki_db
       - DJANGO_DB_NAME=postgres
       - DJANGO_DB_USER=postgres
-      - DJANGO_ALLOWED_HOSTS=spbetu.ru,localhost
+      - DJANGO_ALLOWED_HOSTS=api.spbetu.ru,localhost
       - CSRF_TRUSTED_ORIGINS=https://spbetu.ru
       - POSTGRES_PASSWORD_FILE=/run/secrets/pg_password
       - DJANGO_SECRET_FILE=/run/secrets/django_secret
@@ -15,7 +15,7 @@ services:
     entrypoint: >
       sh -c "
         export POSTGRES_PASSWORD=$$(cat /run/secrets/pg_password);
-        exec gunicorn gamification.wsgi:application --bind 0.0.0.0:8010 --workers=3
+        exec gunicorn gamification.wsgi:application --bind 0.0.0.0:8000 --workers=3
       "
     networks:
       - traefik-public
@@ -25,10 +25,10 @@ services:
       - django_secret
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend_perekhodnichki.rule=Host(`spbetu.ru`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend_perekhodnichki.rule=Host(`api.spbetu.ru`)"
       - "traefik.http.routers.backend_perekhodnichki.entrypoints=websecure"
       - "traefik.http.routers.backend_perekhodnichki.tls=true"
-      - "traefik.http.services.backend_perekhodnichki.loadbalancer.server.port=8010"
+      - "traefik.http.services.backend_perekhodnichki.loadbalancer.server.port=8000"
     deploy:
       replicas: 2
       restart_policy:
@@ -39,7 +39,7 @@ services:
   frontend_perekhodnichki:
     image: ghcr.io/m4tveevm/perekhodnichki-frontend:latest
     environment:
-      - REACT_APP_API_URL=https://spbetu.ru/api/
+      - REACT_APP_API_URL=https://api.spbetu.ru/
     networks:
       - traefik-public
       - perekhodnichki_net
