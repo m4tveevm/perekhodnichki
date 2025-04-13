@@ -6,7 +6,7 @@ services:
       - DJANGO_DB_NAME=postgres
       - DJANGO_DB_USER=postgres
       - DJANGO_ALLOWED_HOSTS=spbetu.ru,localhost
-      - CSRF_TRUSTED_ORIGINS=https://api.spbetu.ru
+      - CSRF_TRUSTED_ORIGINS=https://spbetu.ru/api
       - POSTGRES_PASSWORD_FILE=/run/secrets/pg_password
       - DJANGO_SECRET_FILE=/run/secrets/django_secret
       - DJANGO_SUPERUSER_USERNAME_FILE=/run/secrets/django_superuser_username
@@ -25,7 +25,7 @@ services:
       - django_secret
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend_perekhodnichki.rule=Host(`api.spbetu.ru`)"
+      - "traefik.http.routers.backend_perekhodnichki.rule=Host(`spbetu.ru`) && PathPrefix(`/api`)"
       - "traefik.http.routers.backend_perekhodnichki.entrypoints=websecure"
       - "traefik.http.routers.backend_perekhodnichki.tls=true"
       - "traefik.http.services.backend_perekhodnichki.loadbalancer.server.port=8000"
@@ -40,7 +40,7 @@ services:
   frontend_perekhodnichki:
     image: ghcr.io/m4tveevm/perekhodnichki-frontend:latest
     environment:
-      - REACT_APP_API_URL=https://api.spbetu.ru/
+      - REACT_APP_API_URL=https://spbetu.ru/api
     networks:
       - traefik-public
       - perekhodnichki_net
