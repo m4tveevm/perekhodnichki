@@ -5,8 +5,8 @@ services:
       - DJANGO_DB_HOST=perekhodnichki_db
       - DJANGO_DB_NAME=postgres
       - DJANGO_DB_USER=postgres
-      - DJANGO_ALLOWED_HOSTS=api.spbetu.ru,localhost
-      - CSRF_TRUSTED_ORIGINS=https://spbetu.ru
+      - DJANGO_ALLOWED_HOSTS=spbetu.ru,localhost
+      - CSRF_TRUSTED_ORIGINS=https://api.spbetu.ru
       - POSTGRES_PASSWORD_FILE=/run/secrets/pg_password
       - DJANGO_SECRET_FILE=/run/secrets/django_secret
       - DJANGO_SUPERUSER_USERNAME_FILE=/run/secrets/django_superuser_username
