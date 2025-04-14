@@ -1,9 +1,14 @@
+import sys
+
 from datetime import timedelta
 from pathlib import Path
 
 from corsheaders.defaults import default_headers
 
 from decouple import Csv, config, strtobool
+
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -141,6 +146,15 @@ else:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+
+
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 LOGGING = {
     "version": 1,
