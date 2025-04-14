@@ -67,18 +67,14 @@ TEMPLATES = [
 WSGI_APPLICATION = "gamification.wsgi.application"
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.postgresql",
-    #     "NAME": config("DJANGO_DB_NAME", default="postgres"),
-    #     "USER": config("DJANGO_DB_USER", default="postgres"),
-    #     "PASSWORD": config("POSTGRES_PASSWORD", default="postgres"),
-    #     "HOST": config("DJANGO_DB_HOST", default="db"),
-    #     "PORT": config("POSTGRES_PORT", default="5432"),
-    # },
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DJANGO_DB_NAME", default="postgres"),
+        "USER": config("DJANGO_DB_USER", default="postgres"),
+        "PASSWORD": config("POSTGRES_PASSWORD", default="postgres"),
+        "HOST": config("DJANGO_DB_HOST", default="db"),
+        "PORT": config("POSTGRES_PORT", default="5432"),
+    },
 }
 
 AUTH_PASSWORD_VALIDATORS = [

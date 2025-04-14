@@ -32,7 +32,7 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <i className="d-block mx-auto mb-4 fa-solid fa-dna fa-2x text-center"></i>
           <h1 className="h4 mb-3 fw-bold text-center">
-            Авторизация
+            Начнем наше путешествие?
           </h1>
           {error && <div className="alert alert-danger">{error}</div>}
 
