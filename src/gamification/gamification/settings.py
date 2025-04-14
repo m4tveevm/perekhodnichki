@@ -30,6 +30,9 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "corsheaders",
     #
+    "achievement.apps.AchievementConfig",
+    "achievementassessment.apps.AchievementassessmentConfig",
+    "lesson.apps.LessonConfig",
     "user.apps.UserConfig",
 ]
 MIDDLEWARE = [
@@ -64,14 +67,18 @@ TEMPLATES = [
 WSGI_APPLICATION = "gamification.wsgi.application"
 
 DATABASES = {
+    # "default": {
+    #     "ENGINE": "django.db.backends.postgresql",
+    #     "NAME": config("DJANGO_DB_NAME", default="postgres"),
+    #     "USER": config("DJANGO_DB_USER", default="postgres"),
+    #     "PASSWORD": config("POSTGRES_PASSWORD", default="postgres"),
+    #     "HOST": config("DJANGO_DB_HOST", default="db"),
+    #     "PORT": config("POSTGRES_PORT", default="5432"),
+    # },
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DJANGO_DB_NAME", default="postgres"),
-        "USER": config("DJANGO_DB_USER", default="postgres"),
-        "PASSWORD": config("POSTGRES_PASSWORD", default="postgres"),
-        "HOST": config("DJANGO_DB_HOST", default="db"),
-        "PORT": config("POSTGRES_PORT", default="5432"),
-    },
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [

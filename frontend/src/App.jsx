@@ -5,7 +5,11 @@ import Home from "./components/Home";
 // import ExhibitDetail from "./components/Exhibits/ExhibitDetail";
 // import VirtualTour from "./components/VirtualTour";
 // import Leaderboard from "./components/Leaderboard";
-// import Achievements from "./components/Achievements";
+import Achievements from "./components/Achievements";
+import Badges from "./components/Badges";
+import LessonDetail from "./components/LessonDetail";
+
+
 // import Events from "./components/Events";
 // import Map from "./components/Map";
 // import Feedback from "./components/Feedback";
@@ -47,15 +51,17 @@ function MainApp() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/quest" element={<Quest />} />
-      <Route path="/exhibits" element={<ExhibitsList />} />
-      <Route path="/exhibits/:id" element={<ExhibitDetail />} />
-      <Route path="/virtual-tour" element={<VirtualTour />} />
-      <Route path="/leaderboard" element={<Leaderboard />} />
+      <Route path="/badges" element={<Badges />} />
+      <Route path="/LessonDetail" element={<LessonDetail />} />
+      {/*<Route path="/quest" element={<Quest />} />*/}
+      {/*<Route path="/exhibits" element={<ExhibitsList />} />*/}
+      {/*<Route path="/exhibits/:id" element={<ExhibitDetail />} />*/}
+      {/*<Route path="/virtual-tour" element={<VirtualTour />} />*/}
+      {/*<Route path="/leaderboard" element={<Leaderboard />} />*/}
       <Route path="/achievements" element={<Achievements />} />
-      <Route path="/events" element={<Events />} />
-      <Route path="/map" element={<Map />} />
-      <Route path="/feedback" element={<Feedback />} />
+      {/*<Route path="/events" element={<Events />} />*/}
+      {/*<Route path="/map" element={<Map />} />*/}
+      {/*<Route path="/feedback" element={<Feedback />} />*/}
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/settings" element={<UserSettings />} />
       <Route path="/logout" element={<Logout />} />

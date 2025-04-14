@@ -1,26 +1,15 @@
-from user.models import CustomUser
+from user.models import UserProfile
 
 from rest_framework import serializers
 
-__all__ = ["UserProfileSerializer", "UserSettingsSerializer"]
+
+__all__ = ("UserProfileSerializer",)
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source="user.username", read_only=True)
+    email = serializers.EmailField(source="user.email", read_only=True)
+
     class Meta:
-        model = CustomUser
-        fields = ["id", "username", "email", "avatar"]
-
-
-class UserSettingsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = ["email", "password"]
-
-    def update(self, instance, validated_data):
-        instance.email = validated_data.get("email", instance.email)
-        password = validated_data.get("password", None)
-        if password:
-            instance.set_password(password)
-
-        instance.save()
-        return instance
+        model = UserProfile
+        fields = ["id", "username", "email", "current_level", "total_points"]

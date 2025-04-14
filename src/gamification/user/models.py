@@ -1,28 +1,33 @@
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import User
 from django.db import models
 
-__all__ = ["CustomUser"]
+__all__ = ("UserProfile",)
 
 
-class CustomUser(AbstractUser):
-    avatar = models.URLField(
-        max_length=255,
-        null=True,
-        blank=True,
-        help_text="URL профиля пользователя",
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name="profile",
+        verbose_name="Пользователь",
+        help_text="Пользователь, для которого создается профиль",
+    )
+    current_level = models.PositiveIntegerField(
+        default=1,
+        verbose_name="Текущий уровень",
+        help_text="Текущий уровень пользователя в системе геймификации",
+    )
+    total_points = models.PositiveIntegerField(
+        default=0,
+        verbose_name="Набранные очки",
+        help_text="Общее количество очков, накопленных "
+        "пользователем за выполнение квестов",
     )
 
-    groups = models.ManyToManyField(
-        Group,
-        related_name="customuser_set",
-        blank=True,
-        help_text="The groups this user belongs to.",
-        verbose_name="groups",
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name="customuser_permissions",
-        blank=True,
-        help_text="Specific permissions for this user.",
-        verbose_name="user permissions",
-    )
+    def __str__(self):
+        return f"Profile: {self.user.username}"
+
+    class Meta:
+        verbose_name = "Профиль пользователя"
+        verbose_name_plural = "Профили пользователей"
+        ordering = ["user__username"]
