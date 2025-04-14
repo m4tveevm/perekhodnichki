@@ -8,8 +8,6 @@ from corsheaders.defaults import default_headers
 from decouple import Csv, config, strtobool
 
 
-
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("DJANGO_SECRET", default="fallback_secret_key")
@@ -148,11 +146,11 @@ else:
     CSRF_COOKIE_SECURE = True
 
 
-if 'test' in sys.argv:
+if "test" in sys.argv:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 
