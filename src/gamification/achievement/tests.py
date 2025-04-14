@@ -143,8 +143,4 @@ class BadgeAPITests(APITestCase):
         self.assertEqual(response.status_code, 200)
         self.assertGreater(len(response.data), 0)
 
-    def test_get_badges_list(self):
-        url = reverse("badge-list")
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertGreater(len(response.data), 0)
+# Removed duplicate test_get_badges_list method.
