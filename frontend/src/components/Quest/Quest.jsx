@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import StepsNav from "./StepsNav";
+import StepsNav from "../StepsNav";
 
 function Quest() {
   const navigate = useNavigate();
