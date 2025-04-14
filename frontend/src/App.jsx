@@ -5,9 +5,9 @@ import Home from "./components/Home";
 // import ExhibitDetail from "./components/Exhibits/ExhibitDetail";
 // import VirtualTour from "./components/VirtualTour";
 // import Leaderboard from "./components/Leaderboard";
-import Achievements from "./components/Achievements";
-import Badges from "./components/Badges";
-import LessonDetail from "./components/LessonDetail";
+import Achievements from "./components/Achievements/Achievements";
+import Badges from "./components/Badges/Badges";
+import LessonDetail from "./components/Lesson/LessonDetail";
 
 
 // import Events from "./components/Events";
@@ -24,6 +24,7 @@ import { ToastContainer } from "react-toastify";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import React from "react";
+
 
 function App() {
   return (
