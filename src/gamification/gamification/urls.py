@@ -25,4 +25,7 @@ urlpatterns = [
     ),
     #
     path("api/user/", include("user.urls")),
+    path("api/achievement/", include("achievement.urls")),
+    path("api/achievementassessment/", include("achievementassessment.urls")),
+    path("api/lesson/", include("lesson.urls")),
 ]
